@@ -1,0 +1,23 @@
+PRODUCTS CREATION:
+
+{
+    "product" : {
+        "images" : "http://dummyimage.com/253x120.png/5fa2dd/ffffff",
+        "description" : "Monitoring of Cardiac Sound, External Approach",
+        "listedPrice" : 18.21,
+        "discountPercentage" : 0.05,
+        "availability" : 3
+    },
+
+    "address": {
+        "name": "Murali Krishna",
+        "number" : "407-746-4444",
+        "lineOne" : "7399 Max Way",
+        "lineTwo" : "PO Box 86254",
+        "city" : "Nightona Beach",
+        "state" : "Kansas",
+        "zipcode" : "08817",
+        "country" : "US"
+    },
+    "userId": "01GY0DKN8SQNAXEJGMHQSWP71E"
+}

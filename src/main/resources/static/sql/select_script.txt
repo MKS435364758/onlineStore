@@ -1,0 +1,107 @@
+SELECT * FROM ORDERS;
+SELECT * FROM PAYMENTS;
+SELECT * FROM PRODUCTS;
+SELECT * FROM USERS;
+SELECT * FROM ADDRESS;
+
+
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('74ae0b56-9667-467f-ac43-2011b571cfb5', 'gbrierley0', 'Gray', 'Brierley', 'gbrierley0@naver.com', '470-133-5786', '2022-08-03 01:51:01');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('ff730fa2-ef73-4b1a-88f6-087d9b1faea7', 'dedinburgh1', 'Dulce', 'Edinburgh', 'dedinburgh1@sogou.com', '287-581-2948', '2023-01-27 03:47:32');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('05479156-4059-45bd-b85a-8414b3d73ef5', 'ggisburne2', 'Gray', 'Gisburne', 'ggisburne2@flavors.me', '416-986-0425', '2022-07-29 00:25:59');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('adc01b98-3f33-45ff-b840-17dd3d0901c2', 'fdilley3', 'Finlay', 'Dilley', 'fdilley3@icq.com', '648-170-4145', '2023-01-18 13:29:38');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('7cef7009-1499-4efc-859d-89054a28dc92', 'jstagg4', 'Jacquenetta', 'Stagg', 'jstagg4@tripadvisor.com', '850-268-3514', '2022-08-25 09:48:15');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('c7444917-34e2-46ac-bcc4-42b6967a5fd3', 'ajerche5', 'Arleen', 'Jerche', 'ajerche5@freewebs.com', '166-857-7186', '2022-04-03 22:27:02');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('6e02d265-fde4-4b01-91f7-11f2d46e5388', 'erosenau6', 'Erda', 'Rosenau', 'erosenau6@barnesandnoble.com', '302-365-5823', '2022-08-01 01:28:43');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('7b5b4ca3-fe6f-46af-908c-973a782bf0d8', 'gstruther7', 'Gerrie', 'Struther', 'gstruther7@shinystat.com', '124-664-5287', '2022-12-21 13:24:41');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('a5a10175-be4f-47b8-b1fc-a6d1d6bc2a3f', 'rcowans8', 'Ricardo', 'Cowans', 'rcowans8@prweb.com', '649-167-7798', '2023-03-05 06:49:32');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('e87da125-91e5-4a40-8f75-844ec23a28a8', 'bvamplew9', 'Bev', 'Vamplew', 'bvamplew9@infoseek.co.jp', '130-514-9788', '2022-07-07 13:56:46');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('d8c4034c-43e3-4b1a-b969-b1f04d1eccdf', 'jpepia', 'Josepha', 'Pepi', 'jpepia@hostgator.com', '816-322-4610', '2022-08-26 03:27:51');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('cf395c24-7a78-479f-a3b9-b3a354ae65e2', 'dcorreab', 'Dinah', 'Correa', 'dcorreab@ft.com', '304-915-0062', '2023-01-12 23:46:55');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('9c2dcb8a-dd69-437f-b8c5-e9f2e23107c4', 'dfinlowc', 'Darsie', 'Finlow', 'dfinlowc@discuz.net', '131-320-4682', '2022-04-05 00:58:29');
+insert into USERS (id, username, first_name, last_name, email, number, created_on) values ('f41161ee-2ed9-48d5-92cd-54e5993200c4', 'mhillingd', 'Martguerita', 'Hilling', 'mhillingd@mtv.com', '428-231-8147', '2023-03-05 17:21:19');
+
+
+
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('1ef81f68-c4c0-4ff4-b9c8-2b3a4ae66ec1', 'http://dummyimage.com/137x100.png/cc0000/ffffff', 'Meds Mgmt for Substance Abuse Treatment, Naltrexone', 265.65, 0.43, 18);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('e6510314-0ef4-46dc-ad62-576adb10d872', 'http://dummyimage.com/102x100.png/cc0000/ffffff', 'Replacement of R Pulm Art with Synth Sub, Perc Endo Approach', 41.14, 0, 31);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('b8403cf5-bf15-4810-b403-98f06f03c653', 'http://dummyimage.com/157x100.png/ff4444/ffffff', 'Removal of Autol Sub from Thor Disc, Perc Approach', 220.0, 0.11, 50);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('bb57e7e2-6aac-4e34-a046-bc017d9a5485', 'http://dummyimage.com/170x100.png/ff4444/ffffff', 'Transfer Pelvic Subcu/Fascia w Skin, Subcu, Fascia, Perc', 171.03, 0, 60);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('daad6948-546c-43a8-8bbb-ffa803c00cef', 'http://dummyimage.com/229x100.png/5fa2dd/ffffff', 'Visual Motor Integration Treatment', 24.02, 0, 20);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('15797562-2a10-4a9a-89b3-2ab5877eb180', 'http://dummyimage.com/144x100.png/dddddd/000000', 'Removal of Radioactive Element from Upper Jaw, Open Approach', 175.79, 0.58, 29);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('1cfa5b7e-3419-44bd-9afd-042ca89d0870', 'http://dummyimage.com/122x100.png/dddddd/000000', 'Revision of Radioactive Element in Lower Jaw, Open Approach', 292.48, 0.18, 75);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('9665eeea-8e72-4f2e-aff9-cd24e06b91ba', 'http://dummyimage.com/151x100.png/cc0000/ffffff', 'Insertion of Int Fix into L Sternoclav Jt, Open Approach', 86.59, 0.62, 33);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('e85e74a1-9212-4557-8398-4a82488354a6', 'http://dummyimage.com/135x100.png/cc0000/ffffff', 'Excision of R Ext Auditory Canal, Perc Endo Approach, Diagn', 86.72, 0.68, 49);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('d228d6ee-1b3e-4d6f-978b-fe0345dc7a28', 'http://dummyimage.com/166x100.png/ff4444/ffffff', 'Reposition Right Hip Tendon, Open Approach', 225.73, 0, 49);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('d7393919-b587-4d47-a915-1b88b876afd8', 'http://dummyimage.com/150x100.png/dddddd/000000', 'Insertion of Monitoring Device into Cor Vein, Perc Approach', 24.13, 0.83, 7);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('7ac0a6f5-3f1e-4e12-937c-fd69d6ac21d2', 'http://dummyimage.com/111x100.png/cc0000/ffffff', 'Drainage of R Ext Ear with Drain Dev, Perc Endo Approach', 99.53, 0, 87);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('de960c6c-8ad0-4cd6-8528-14c8c6018884', 'http://dummyimage.com/152x100.png/5fa2dd/ffffff', 'Fluoroscopy of Right Ureter using High Osmolar Contrast', 34.83, 0.18, 35);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('62da76a7-387e-42bd-b145-939369f629ab', 'http://dummyimage.com/118x100.png/ff4444/ffffff', 'Reposition Right Renal Vein, Percutaneous Approach', 62.15, 0.06, 44);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('bddeb4f5-0276-4bcf-ab4c-a3a888715f98', 'http://dummyimage.com/154x100.png/cc0000/ffffff', 'Supplement Lingula Bronchus with Nonaut Sub, Open Approach', 137.9, 0.77, 95);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('d0d9b3c7-417c-44c7-8c31-db681e7e9879', 'http://dummyimage.com/133x100.png/dddddd/000000', 'Detachment at Left Ring Finger, Mid, Open Approach', 265.99, 0.56, 83);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('0f62ca64-2dab-40cd-ae2a-6c047d6ef85c', 'http://dummyimage.com/179x100.png/dddddd/000000', 'Transfer R Low Leg Subcu/Fascia w Skin, Subcu, Fascia, Perc', 118.82, 0.32, 12);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('ae15387e-ff35-4de5-8718-c9d71c7fdb62', 'http://dummyimage.com/196x100.png/ff4444/ffffff', 'Supplement Cul-de-sac with Synthetic Substitute, Via Opening', 50.24, 0.29, 26);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('8f0759f2-ebb9-4a05-a7ae-e848e00ad85a', 'http://dummyimage.com/134x100.png/cc0000/ffffff', 'Introduce of Monoclonal Antibody into GU Tract, Via Opening', 207.04, 0, 81);
+insert into PRODUCTS (id, images, description, listed_price, discount, availability) values ('a37e1a16-d387-4585-8656-0bd85034cc80', 'http://dummyimage.com/135x100.png/ff4444/ffffff', 'Revision of Autol Sub in L Femur Shaft, Perc Approach', 218.17, 0.92, 86);
+
+
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('34d5db2d-e340-4ef1-a008-6c61ba722711', 'Sandor Ord', '5048376717284209', '2024-10', 986, '2022-06-23 16:08:21');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('2924db65-3376-49f9-bb4e-184dd61e6e51', 'Grissel Wieprecht', '5048375899868516', '2025-04', 852, '2022-11-02 00:39:44');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('04baca90-6a1b-4795-b253-711bce64cd07', 'Peyter Musker', '5048372841377084', '2025-03', 353, '2022-10-16 02:22:52');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('66ef92b9-fddf-42a3-91ad-acf9788a945a', 'Libbie Sired', '5048371639904273', '2024-12', 970, '2022-12-04 00:08:29');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('2831cccd-7f0a-42bd-8f0b-0f1e932f35da', 'Lula Rowcastle', '5048371850523323', '2026-03', 467, '2022-11-04 21:54:35');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('f6874605-d282-4c85-ae52-ee85c1c27cf8', 'Ivonne Murtell', '5048376143601364', '2026-09', 424, '2022-08-22 15:26:39');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('7b5a7abd-ad35-430e-a91b-807a1cfd2d54', 'Dorie Luno', '5108750374930162', '2025-11', 571, '2023-02-24 18:52:42');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('52fea5c9-1d96-42e3-9516-5707208d9862', 'Bondy Antonucci', '5108751525844716', '2029-07', 124, '2022-06-01 15:56:19');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('3c2976e1-1720-46ab-9ed7-b0f15fd796d8', 'Meagan Wilton', '5048377050952972', '2030-06', 676, '2022-11-07 08:42:48');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('cf6cbb8e-de3f-4c29-9688-0aa6b38faf96', 'Mick Coleford', '5108750452686223', '2028-02', 956, '2022-07-17 23:38:02');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('11f8644f-8193-4f67-82ff-715ff8ca29be', 'Kariotta Jarrette', '5048373452810959', '2025-05', 396, '2022-05-31 10:08:12');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('b771d031-4d73-4e74-9142-8663dd1c8a7f', 'Murry Steane', '5048374404638308', '2027-12', 819, '2023-01-29 06:20:36');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('e19d2f9e-0b30-468b-b268-237ba08ba080', 'Leigha Bourbon', '5108752831025412', '2028-01', 902, '2022-05-07 10:24:44');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('0e4707a2-1e9f-4943-bd71-204a85b57f37', 'Letti Koche', '5048373432828675', '2030-02', 389, '2022-11-15 16:02:17');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('728116e7-22cc-4c2b-97c9-0551d7752fb6', 'Alberto Finby', '5108753424720625', '2029-12', 621, '2022-09-05 10:02:20');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('cc1dec74-5ffc-467c-a4ee-1923e7a0e196', 'Clotilda Hortop', '5048378001154809', '2028-08', 682, '2023-01-22 11:32:36');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('43fae21f-e025-429e-a3bc-a0bb47249eaf', 'Trent McGrirl', '5108751486403213', '2027-12', 118, '2022-09-03 06:16:02');
+insert into PAYMENTS (id, card_holder, card_number, date, secure_code, made_on) values ('4778ff54-93db-484f-99e1-8b7ee435ba74', 'West Brant', '5108758189775490', '2027-09', 695, '2022-11-20 03:44:34');
+
+
+insert into ORDERS (id, status, made_on, delivered_on) values ('de185520-4d15-4d30-a16b-147eb32a193e', 'delivered', '2023-03-10 22:19:55', '2023-03-16 08:44:54');
+insert into ORDERS (id, status, made_on, delivered_on) values ('b67a6456-9cd6-4ec7-a3bd-0af46d4d70d2', 'delivered', '2023-03-06 03:32:37', '2023-03-16 10:07:21');
+insert into ORDERS (id, status, made_on, delivered_on) values ('15c70c65-8cb5-45e8-8c7e-d3aab3abbd04', 'delivered', '2023-03-12 18:48:18', '2023-03-16 12:46:41');
+insert into ORDERS (id, status, made_on, delivered_on) values ('437f17c0-6253-4cfa-9293-2dabf8bb21b2', 'delivered', '2023-03-03 15:48:00', '2023-03-16 01:25:14');
+insert into ORDERS (id, status, made_on, delivered_on) values ('e9372871-8444-49db-a403-68c3349e5e11', 'delivered', '2023-03-03 20:48:48', '2023-03-16 21:11:11');
+insert into ORDERS (id, status, made_on, delivered_on) values ('3a578e88-6fcf-4f8b-bbba-31bc73cae083', 'delivered', '2023-03-09 16:12:56', '2023-03-16 23:18:39');
+insert into ORDERS (id, status, made_on, delivered_on) values ('7fbdd5bf-3c31-4ca2-9073-aad469b198e5', 'packing item', '2023-03-15 02:03:19', '2023-03-16 12:14:25');
+insert into ORDERS (id, status, made_on, delivered_on) values ('8bb51bdd-ea05-4c9b-a00a-5d175908975e', 'delivered', '2023-03-11 11:23:23', '2023-03-16 16:13:06');
+insert into ORDERS (id, status, made_on, delivered_on) values ('a8f11de7-186a-431f-a120-9884eb9eac80', 'packing item', '2023-03-09 22:16:03', '2023-03-16 03:01:27');
+insert into ORDERS (id, status, made_on, delivered_on) values ('2e5ae348-3d9a-4dce-86b3-2f5a79dab770', 'delivered', '2023-03-15 03:35:20', '2023-03-16 11:40:28');
+insert into ORDERS (id, status, made_on, delivered_on) values ('eb629c54-e0b9-4284-8c1e-6137831373a5', 'packing item', '2023-03-12 07:49:18', '2023-03-16 16:16:39');
+insert into ORDERS (id, status, made_on, delivered_on) values ('c7afc7e6-e96d-4b48-865b-5b512e443c0d', 'delivered', '2023-03-10 13:11:27', '2023-03-16 22:30:32');
+insert into ORDERS (id, status, made_on, delivered_on) values ('3f0d95cb-ffcd-44de-9bc6-4efa1fbca819', 'delivered', '2023-03-10 23:31:55', '2023-03-16 09:04:05');
+insert into ORDERS (id, status, made_on, delivered_on) values ('2c6de845-d868-4ede-b469-ed3153da3134', 'delivered', '2023-03-13 05:07:09', '2023-03-16 21:09:08');
+insert into ORDERS (id, status, made_on, delivered_on) values ('2a9fdec3-8acd-4fff-8a46-28884a5f3896', 'delivered', '2023-03-15 21:01:44', '2023-03-16 03:49:06');
+insert into ORDERS (id, status, made_on, delivered_on) values ('e69c8e1e-0e62-49a5-9ade-a8280f125cd4', 'delivered', '2023-03-15 15:47:59', '2023-03-16 14:15:34');
+insert into ORDERS (id, status, made_on, delivered_on) values ('1fe72eeb-eaaa-4153-9b61-3ecb09568d5f', 'delivered', '2023-03-05 09:04:11', '2023-03-16 05:08:30');
+insert into ORDERS (id, status, made_on, delivered_on) values ('0785a4fb-2b69-4800-a127-1004c9878973', 'delivered', '2023-03-13 21:49:25', '2023-03-16 14:38:16');
+insert into ORDERS (id, status, made_on, delivered_on) values ('14ef0af8-bb83-4dff-8347-974f47c61b22', 'delivered', '2023-03-09 18:58:03', '2023-03-16 18:38:56');
+insert into ORDERS (id, status, made_on, delivered_on) values ('d4ade84c-d750-4f7c-a8d4-4e5eed4e922e', 'delivered', '2023-03-01 13:08:29', '2023-03-16 06:36:12');
+
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('c2bd7c97-847b-47a4-9d10-fe4ae0382590', 'Kettie Kubicka', '508-515-6403', '793 Ridgeway Park', '15th Floor', 'Brockton', 'Massachusetts', '02305', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('49a51008-2275-4356-aad6-0bebb4ee4d76', 'Baxy Matessian', '540-757-7762', '731 Mendota Drive', 'Suite 43', 'Roanoke', 'Virginia', '24048', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('8e4824ae-e8a8-4e33-9ef2-58054c93c4fe', 'Nev Colchett', '404-871-4507', '1 Columbus Terrace', '1st Floor', 'Alpharetta', 'Georgia', '30022', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('553c31b4-6805-4329-aaff-b49a3a0a41de', 'Irma Figin', '202-559-6935', '8787 Oxford Point', 'PO Box 16269', 'Washington', 'District of Columbia', '20244', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('658d0630-729d-493b-ab23-b45fa7b45437', 'Elnora Gionettitti', '410-288-0136', '3963 Upham Parkway', 'Room 576', 'Baltimore', 'Maryland', '21229', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('f7adbaeb-084f-4fa9-a53f-f354f22cc136', 'Genovera Seth', '512-677-6394', '26 Warrior Park', 'Apt 1562', 'Austin', 'Texas', '78778', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('4a34d7c8-748a-4f67-8378-80a95d55dee2', 'Haroun Ruffler', '502-916-9711', '3128 Spenser Junction', 'Suite 96', 'Louisville', 'Kentucky', '40250', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('9cd370c5-83be-4d35-ba50-cb08f5c1adb3', 'Christabella Tunbridge', '208-304-9626', '6 Sunbrook Parkway', 'Suite 36', 'Idaho Falls', 'Idaho', '83405', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('4604f65b-9344-48ff-a2dd-f6f4f46a3ea6', 'Timofei Kittel', '503-100-4725', '12765 Caliangt Trail', 'Room 550', 'Portland', 'Oregon', '97286', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('6c32c427-d800-47a2-bb9e-85138b00aabb', 'Julieta Riedel', '817-649-5057', '37 Hollow Ridge Road', '19th Floor', 'Fort Worth', 'Texas', '76134', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('86006c30-a8d3-4c54-b732-e11cf39daf18', 'Zedekiah De Mars', '915-255-9806', '4036 Scott Lane', '1st Floor', 'El Paso', 'Texas', '88530', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('1d7448a5-b0d6-43a0-a699-0d1a85a7a1ca', 'Reeta Forrestall', '412-893-7391', '8 Hoepker Plaza', 'Apt 1969', 'Pittsburgh', 'Pennsylvania', '15215', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('08961a58-2923-4d23-bf96-9b1e0376482c', 'Osborn Stevens', '504-319-6639', '2 Golf View Hill', 'PO Box 35504', 'New Orleans', 'Louisiana', '70160', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('a785ccb1-b0cb-4f91-9451-4c48211f3e83', 'Oates Gayle', '508-838-0877', '642 Old Shore Court', 'Room 380', 'Worcester', 'Massachusetts', '01605', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('65dd7e54-db9f-4a62-a2b5-f9f5901aa246', 'Dari Fermor', '636-394-2518', '374 Gulseth Junction', '16th Floor', 'Saint Louis', 'Missouri', '63131', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('b7142e91-6d7e-4089-8cd7-89f477af6596', 'Lanie Hubery', '513-125-6150', '47 Swallow Pass', 'Apt 460', 'Cincinnati', 'Ohio', '45999', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('b4c872fe-3812-4030-adf7-68ec4e844275', 'Sarge Buckby', '520-922-8638', '68 Sunfield Terrace', 'Apt 420', 'Tucson', 'Arizona', '85710', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('e5a09e40-5f73-4766-b3e0-d123afb44315', 'Blondelle Reilinger', '405-547-5366', '5994 Jenna Court', 'Suite 42', 'Oklahoma City', 'Oklahoma', '73167', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('f92d8b29-2b42-4480-8ee3-8574c3324f38', 'Steve Esson', '251-904-7508', '90207 Thierer Junction', 'Suite 23', 'Mobile', 'Alabama', '36628', 'US');
+insert into ADDRESS (id, name, number, line_one, line_two, city, state, zipcode, country) values ('d76e5ef9-f8eb-40fd-944e-e61bc9bf2e1d', 'Jacenta Shallow', '410-821-4192', '34363 Sycamore Park', '17th Floor', 'Baltimore', 'Maryland', '21216', 'US');
