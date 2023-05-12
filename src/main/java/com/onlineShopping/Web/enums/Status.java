@@ -16,6 +16,6 @@ public enum Status {
     REFUNDED_DISPUTED,
     MANUAL_VERIFICATION_REQUIRED,
     PARTIALLY_REFUNDED
-    }
+}
 
 

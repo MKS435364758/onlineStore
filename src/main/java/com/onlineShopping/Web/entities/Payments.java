@@ -1,7 +1,10 @@
 package com.onlineShopping.Web.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -17,8 +20,8 @@ import java.sql.Timestamp;
 public class Payments {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name = "id")
     private String id;
 
@@ -38,7 +41,7 @@ public class Payments {
     @Column(name = "transaction_id")
     private String transaction_id;
 
-    @Column(name="status")
+    @Column(name = "status")
     private String status;
 
     @CreationTimestamp
@@ -46,9 +49,9 @@ public class Payments {
     //private Date madeOn;
     private Timestamp madeOn;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
-    @JoinColumn(name = "orderId",referencedColumnName = "id")
+    @JoinColumn(name = "orderId", referencedColumnName = "id")
     private Orders order;
 
 }

@@ -18,24 +18,23 @@ public class PaymentController {
 
     PaymentsService paymentsService;
 
-    @PostMapping(value = "/start/",params = {"orderId"})
-    public ResponseEntity<Orders> PaymentGateWay(@RequestBody CardDetails cardDetails, @RequestParam("orderId") String orderId){
-        return new ResponseEntity<>(paymentsService.savaPayments(cardDetails,orderId),
+    @PostMapping(value = "/start/", params = {"orderId"})
+    public ResponseEntity<Orders> PaymentGateWay(@RequestBody CardDetails cardDetails, @RequestParam("orderId") String orderId) {
+        return new ResponseEntity<>(paymentsService.savaPayments(cardDetails, orderId),
                 HttpStatus.OK
         );
     }
 
 
-    @PostMapping(value = "/start/test/",params = {"orderId","amount"})
+    @PostMapping(value = "/start/test/", params = {"orderId", "amount"})
     public ResponseEntity<Payments> getTransaction(@RequestBody CardDetails cardDetails, @RequestParam("orderId") String orderId,
-                                                   @RequestParam("amount") BigDecimal amount){
+                                                   @RequestParam("amount") BigDecimal amount) {
 
-        return new ResponseEntity<>(paymentsService.getPayment(cardDetails,orderId,amount),
+        return new ResponseEntity<>(paymentsService.getPayment(cardDetails, orderId, amount),
                 HttpStatus.OK
         );
 
     }
-
 
 
 }

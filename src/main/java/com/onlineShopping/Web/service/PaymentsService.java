@@ -28,7 +28,7 @@ public class PaymentsService {
     OrdersRepository ordersRepository;
 
     public Payments getPayment(CardDetails cardDetails, String orderId,
-                               BigDecimal amount){
+                               BigDecimal amount) {
         RestTemplate restTemplate = new RestTemplate();
         Payments payment = Unwarranted.getObject(ordersRepository.findById(orderId)).getPayment();
 
@@ -39,7 +39,7 @@ public class PaymentsService {
         return payment;
     }
 
-    public Orders savaPayments(CardDetails cardDetails, String orderId){
+    public Orders savaPayments(CardDetails cardDetails, String orderId) {
         RestTemplate restTemplate = new RestTemplate();
 
         //TODO: constructing required pojo for traction and creating http client.
@@ -51,27 +51,26 @@ public class PaymentsService {
         payment.setDate(cardDetails.getDate().toString());
         payment.setSecureCode(cardDetails.getSecureCode());
 
-        PaymentTransaction transaction = new PaymentTransaction(cardDetails,order.getFinalAmount());
-        PaymentTransaction responseTransaction =  restTemplate.postForObject(URL,transaction,PaymentTransaction.class);
+        PaymentTransaction transaction = new PaymentTransaction(cardDetails, order.getFinalAmount());
+        PaymentTransaction responseTransaction = restTemplate.postForObject(URL, transaction, PaymentTransaction.class);
 
         assert responseTransaction != null;
         payment.setStatus(responseTransaction.getStatus());
         payment.setTransaction_id(responseTransaction.getTransactionId());
 
         paymentRepository.save(payment);
-        if(payment.getStatus()!=null){
+        if (payment.getStatus() != null) {
             order.setStatus(String.valueOf(Status.PAYMENT_APPROVED));
-            kafkaService.sendMessage("order",new OrderInfo(order));
-        }
-        else order.setStatus(String.valueOf(Status.PAYMENT_FAILED));
+            kafkaService.sendMessage("order", new OrderInfo(order));
+        } else order.setStatus(String.valueOf(Status.PAYMENT_FAILED));
         return Unwarranted.getObject(ordersRepository.findById(orderId));
     }
 
-    Payments getPayments(String id){
+    Payments getPayments(String id) {
         return paymentRepository.findById(id).get();
     }
 
-    void deletePayments(String id){
+    void deletePayments(String id) {
         paymentRepository.deleteById(id);
     }
 }

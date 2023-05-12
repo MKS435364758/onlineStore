@@ -9,15 +9,15 @@ public class AddressService {
 
     AddressRepository addressRepository;
 
-    Address saveOrders(Address address){
+    Address saveOrders(Address address) {
         return addressRepository.save(address);
     }
 
-    Address getOrders(String id){
+    Address getOrders(String id) {
         return addressRepository.findById(id).get();
     }
 
-    void deleteOrders(String id){
+    void deleteOrders(String id) {
         addressRepository.deleteById(id);
     }
 

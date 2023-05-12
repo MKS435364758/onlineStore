@@ -24,7 +24,7 @@ public class ProductsService {
 
     UsersService usersService;
 
-    public Products saveProducts(ProductsPojo products){
+    public Products saveProducts(ProductsPojo products) {
         Products product = products.getProduct();
         product.setAddress(new Address());
         productsRepository.save(product);
@@ -36,35 +36,36 @@ public class ProductsService {
         return product;
     }
 
-    public Products getProductsById(String id){
+    public Products getProductsById(String id) {
         return productsRepository.findById(id).get();
     }
 
 
-    public List<Products> getAllProducts(){
+    public List<Products> getAllProducts() {
         return productsRepository.findAll();
     }
 
-    public List<Products> getProductsByPrices(BigDecimal price,int page,int size){
-        List<Products> products = productsRepository.findAll().stream().filter(i->{
-            if(i.getListedPrice().compareTo(price)!=1) {
+    public List<Products> getProductsByPrices(BigDecimal price, int page, int size) {
+        List<Products> products = productsRepository.findAll().stream().filter(i -> {
+            if (i.getListedPrice().compareTo(price) != 1) {
                 return true;
             }
             return false;
         }).collect(Collectors.toList());
-        return products.subList(page*size,Math.min((page*size)+size,products.size()));
+        return products.subList(page * size, Math.min((page * size) + size, products.size()));
     }
-    public void deleteProducts(String id){
+
+    public void deleteProducts(String id) {
         productsRepository.delete(productsRepository.findById(id).get());
     }
 
-    public List<Products> getProductsByDiscount(int discount,int page,int size) {
-        double d =  discount/(double) 100;
-        return productsRepository.findAll().stream().filter(i->{
-            if(i.getDiscountPercentage().compareTo(d)!=1) {
+    public List<Products> getProductsByDiscount(int discount, int page, int size) {
+        double d = discount / (double) 100;
+        return productsRepository.findAll().stream().filter(i -> {
+            if (i.getDiscountPercentage().compareTo(d) != 1) {
                 return true;
             }
             return false;
-        }).collect(Collectors.toList()).subList(page*size,Math.min((page*size)+size,productsRepository.findAll().size()));
+        }).collect(Collectors.toList()).subList(page * size, Math.min((page * size) + size, productsRepository.findAll().size()));
     }
 }
