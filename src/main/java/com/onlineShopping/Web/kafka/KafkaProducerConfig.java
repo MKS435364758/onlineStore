@@ -21,19 +21,19 @@ public class KafkaProducerConfig {
     private KafkaProperties kafkaProperties;
 
     @Bean
-    public ProducerFactory<String,Object> producerFactory(){
-        Map<String,Object> config = new HashMap<>(kafkaProperties.buildProducerProperties());
+    public ProducerFactory<String, Object> producerFactory() {
+        Map<String, Object> config = new HashMap<>(kafkaProperties.buildProducerProperties());
         return new DefaultKafkaProducerFactory<>(config);
     }
 
     @Bean
-    public KafkaTemplate<String,Object> kafkaTemplate(){
+    public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    public void sendMessage(String key, OrderInfo message){
+    public void sendMessage(String key, OrderInfo message) {
         String topic = "topic-mailing";
-        kafkaTemplate().send(topic,key,message);
-        System.out.println(key+"\n"+message);
+        kafkaTemplate().send(topic, key, message);
+        System.out.println(key + "\n" + message);
     }
 }

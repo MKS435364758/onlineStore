@@ -16,8 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class Products {
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name = "id")
     private String id;
 
@@ -42,13 +42,13 @@ public class Products {
     private Long availability;
 
     @JsonIgnore
-    @ManyToOne(optional = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(columnDefinition = "address_id",referencedColumnName = "id")
+    @ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(columnDefinition = "address_id", referencedColumnName = "id")
     private Address address;
 
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "products",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
     private List<Orders> orders;
 }
 

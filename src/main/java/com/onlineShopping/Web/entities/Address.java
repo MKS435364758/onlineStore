@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="ADDRESS")
+@Table(name = "ADDRESS")
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -17,8 +17,8 @@ import java.util.List;
 public class Address {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name = "id")
     private String id;
 
@@ -54,10 +54,10 @@ public class Address {
     private String country;
 
     @JsonIgnore
-    @ManyToOne(optional =true)
+    @ManyToOne(optional = true)
     private Users user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "address",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
     private List<Products> product;
 }

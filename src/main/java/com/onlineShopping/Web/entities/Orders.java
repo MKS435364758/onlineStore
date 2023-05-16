@@ -13,15 +13,15 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Table(name="ORDERS")
+@Table(name = "ORDERS")
 @Getter
 @Setter
 @NoArgsConstructor
 public class Orders {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name = "id")
     private String id;
 
@@ -38,21 +38,21 @@ public class Orders {
     @Column(name = "delivered_on")
     private Timestamp delivered_on;
 
-    @ManyToOne(optional = true,fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @ManyToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users user;
 
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "payment_id",referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "payment_id", referencedColumnName = "id")
     private Payments payment;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "orders_products",
-            joinColumns = @JoinColumn(name = "order_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id",referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id")
     )
     private List<Products> products;
 

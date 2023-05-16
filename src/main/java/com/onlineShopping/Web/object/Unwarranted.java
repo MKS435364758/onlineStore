@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class Unwarranted<T> {
 
-    public static <T> T getObject(Optional<T> object){
+    public static <T> T getObject(Optional<T> object) {
         return object.orElse(null);
     }
 

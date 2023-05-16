@@ -28,7 +28,7 @@ public class OrderInfo {
 
     private Timestamp delivered_on;
 
-    public OrderInfo(Orders orders){
+    public OrderInfo(Orders orders) {
         this.id = orders.getId();
         this.username = orders.getUser().getUsername();
         this.email = orders.getUser().getEmail();

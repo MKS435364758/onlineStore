@@ -18,50 +18,54 @@ import java.util.List;
 @NoArgsConstructor
 public class Users {
 
-  @Id
-  @GeneratedValue(generator="system-uuid")
-  @GenericGenerator(name="system-uuid", strategy = "uuid")
-  @Column(name="id")
-  private String id;
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(name = "id")
+    private String id;
 
-  @Column(name = "username")
-  private String username;
+    @Column(name = "username")
+    private String username;
 
-  @NonNull
-  @Column(name = "first_name")
-  private String firstName;
+    @NonNull
+    @Column(name="password")
+    private String password;
 
-  @NonNull
-  @Column(name = "last_name")
-  private String lastName;
+    @NonNull
+    @Column(name = "first_name")
+    private String firstName;
 
-  @NonNull
-  @Column(name = "role")
-  private String role;
+    @NonNull
+    @Column(name = "last_name")
+    private String lastName;
 
-  @NonNull
+    @NonNull
+    @Column(name = "role")
+    private String role;
+
+    @NonNull
 //  @JsonIgnore
-  @Column(name = "email")
-  private String email;
+    @Column(name = "email")
+    private String email;
 
-  @NonNull
+    @NonNull
 //  @JsonIgnore
-  @Column(name = "number")
-  private String number;
+    @Column(name = "number")
+    private String number;
 
-  @NonNull
-  @CreationTimestamp
+    @NonNull
+    @CreationTimestamp
 //  @JsonIgnore
-  @Column(name = "created_on")
-  //private Date createdOn;
-  private Timestamp createdOn;
+    @Column(name = "created_on")
+    //private Date createdOn;
+    private Timestamp createdOn;
 
-  @JsonIgnore
-  @OneToMany(mappedBy = "user")
-  private List<Address> addresses;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Address> addresses;
 
-  @JsonIgnore
-  @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-  private List<Orders> orderList;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Orders> orderList;
 
 }

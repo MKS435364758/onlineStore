@@ -31,13 +31,12 @@ public class OrdersService {
 
     PaymentsRepository paymentsRepository;
 
-    public List<Orders> getAllOrders(){
+    public List<Orders> getAllOrders() {
         return ordersRepository.findAll();
     }
 
 
-
-    public Orders saveOrders(OrderPojo orderPojo){
+    public Orders saveOrders(OrderPojo orderPojo) {
 
         Orders order = new Orders();
 
@@ -48,8 +47,8 @@ public class OrdersService {
 
 //        productsRepository.findAllById(orderPojo.getProductsIds());
 
-        orderPojo.getProductsIds().forEach(i->{
-            if(productsRepository.findById(i).isPresent())products.add(productsRepository.findById(i).get());
+        orderPojo.getProductsIds().forEach(i -> {
+            if (productsRepository.findById(i).isPresent()) products.add(productsRepository.findById(i).get());
         });
 
         order.setProducts(products);
@@ -70,28 +69,28 @@ public class OrdersService {
 
         BigDecimal d = new BigDecimal(0);
 
-        order.setFinalAmount(products.stream().map(Products::getListedPrice).reduce(BigDecimal.ZERO,BigDecimal::add));
+        order.setFinalAmount(products.stream().map(Products::getListedPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
 
         ordersRepository.save(order);
 
-        usersService.updateOrdersList(orderPojo.getUserId(),order.getId());
+        usersService.updateOrdersList(orderPojo.getUserId(), order.getId());
 
         return ordersRepository.findById(order.getId()).get();
     }
 
-    public Orders getOrderById(String orderId){
+    public Orders getOrderById(String orderId) {
         return ordersRepository.findById(orderId).get();
     }
 
-    public List<Products> getProductsByOrderId(String orderId){
+    public List<Products> getProductsByOrderId(String orderId) {
         return ordersRepository.findById(orderId).get().getProducts();
     }
 
-    public Orders getOrdersById(String id){
+    public Orders getOrdersById(String id) {
         return ordersRepository.findById(id).get();
     }
 
-    public void deleteOrders(String id){
+    public void deleteOrders(String id) {
         ordersRepository.deleteById(id);
     }
 }
