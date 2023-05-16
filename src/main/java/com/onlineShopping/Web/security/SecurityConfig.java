@@ -28,10 +28,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST).hasAnyRole("ADMIN","USER","SUPERADMIN")
-                .antMatchers(HttpMethod.DELETE).hasRole("SUPERADMIN")
                 .antMatchers(HttpMethod.GET).permitAll()
-                .antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN","SUPERADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
@@ -48,12 +45,17 @@ public class SecurityConfig {
                 .password(new BCryptPasswordEncoder().encode("admin-pass"))
                 .roles("ADMIN")
                 .build();
+        UserDetails superAdmin = User.builder()
+                .username("Admin@Super")
+                .password(new BCryptPasswordEncoder().encode("SuperAdmin@Admin"))
+                .roles("SUPERADMIN")
+                .build();
         UserDetails userOne = User.builder()
                 .username("userOne")
                 .password(new BCryptPasswordEncoder().encode("user-pass"))
                 .roles("USER")
                 .build();
-        return new InMemoryUserDetailsManager(admin,userOne);
+        return new InMemoryUserDetailsManager(admin,userOne,superAdmin);
     }
 
 

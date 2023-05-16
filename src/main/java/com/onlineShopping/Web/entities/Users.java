@@ -27,6 +27,7 @@ public class Users {
     @Column(name = "username")
     private String username;
 
+    @NonNull
     @Column(name="password")
     private String password;
 

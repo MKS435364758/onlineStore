@@ -16,6 +16,8 @@ public interface UsersRepository extends JpaRepository<Users, String> {
 
     public Optional<Users> findByEmail(String Email);
 
+    public Optional<Users> findByUsernameAndEmail(String username,String email);
+
     @Modifying
     @Transactional
     @Query("UPDATE Users u SET u.password = :defaultPassword")

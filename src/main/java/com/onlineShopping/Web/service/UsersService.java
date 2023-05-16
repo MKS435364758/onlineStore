@@ -4,7 +4,11 @@ import com.onlineShopping.Web.entities.Orders;
 import com.onlineShopping.Web.entities.Users;
 import com.onlineShopping.Web.repository.OrdersRepository;
 import com.onlineShopping.Web.repository.UsersRepository;
+import com.onlineShopping.Web.request.RoleUpdateRequest;
+import com.onlineShopping.Web.response.RoleUpdateResponse;
+import com.onlineShopping.Web.response.UsersResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -12,6 +16,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -32,21 +37,41 @@ public class UsersService {
         query.executeUpdate();
     }
 
-    public Users saveUser(Users users) {
+
+
+    public RoleUpdateResponse updateUserRoleByAdmin(RoleUpdateRequest request){
+        try {
+            Users user = usersRepository.findByUsernameAndEmail(request.getUsername(),request.getEmail()).get();
+            user.setRole("ADMIN");
+            usersRepository.save(user);
+            return new RoleUpdateResponse("Accepted",user);
+        }catch (RuntimeException ex){
+            return new RoleUpdateResponse("Something when wrong");
+        }
+    }
+
+    public UsersResponse saveUser(Users users) {
         if (users.getUsername() == null) users.setUsername(users.getFirstName() + "_" + users.getLastName());
-        if (users.getRole() == null) users.setRole("USER");
-        return usersRepository.save(users);
+        users.setRole("USER");
+        users.setPassword(new BCryptPasswordEncoder().encode(users.getPassword()));
+        usersRepository.save(users);
+        return new UsersResponse(users);
     }
 
-    public List<Users> getAllUsers() {
-        return usersRepository.findAll();
+    public List<UsersResponse> getAllUsers() {
+        return usersRepository.findAll().stream().map(UsersResponse::new).collect(Collectors.toList());
     }
 
-    public Users getUserByEmail(String email) {
-        return usersRepository.findByEmail(email).get();
+
+    public UsersResponse getUserByEmail(String email) {
+        return new UsersResponse(usersRepository.findByEmail(email).get());
     }
 
-    public Users getUserById(String id) {
+    public UsersResponse getUserResponseById(String id) {
+        return new UsersResponse(getUserById(id));
+    }
+
+    public Users getUserById(String id){
         return usersRepository.findById(id).get();
     }
 
