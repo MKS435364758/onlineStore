@@ -27,7 +27,7 @@ public class Users {
     @Column(name = "username")
     private String username;
 
-    @NonNull
+    @NonNull()
     @Column(name="password")
     private String password;
 
@@ -39,17 +39,14 @@ public class Users {
     @Column(name = "last_name")
     private String lastName;
 
-    @NonNull
     @Column(name = "role")
     private String role;
 
     @NonNull
-//  @JsonIgnore
     @Column(name = "email")
     private String email;
 
     @NonNull
-//  @JsonIgnore
     @Column(name = "number")
     private String number;
 
@@ -68,4 +65,12 @@ public class Users {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Orders> orderList;
 
+
+    public Users(@NonNull String password, @NonNull String firstName, @NonNull String lastName, @NonNull String email, @NonNull String number) {
+        this.password=password;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.email=email;
+        this.number=number;
+    }
 }

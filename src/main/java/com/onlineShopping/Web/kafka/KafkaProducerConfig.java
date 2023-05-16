@@ -1,6 +1,6 @@
 package com.onlineShopping.Web.kafka;
 
-import com.onlineShopping.Web.pojo.OrderInfo;
+import com.onlineShopping.Web.kafka.message.request.OrderInfoMessageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
@@ -31,7 +31,7 @@ public class KafkaProducerConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    public void sendMessage(String key, OrderInfo message) {
+    public void sendMessage(String key, OrderInfoMessageRequest message) {
         String topic = "topic-mailing";
         kafkaTemplate().send(topic, key, message);
         System.out.println(key + "\n" + message);

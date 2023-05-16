@@ -1,4 +1,4 @@
-package com.onlineShopping.Web.pojo;
+package com.onlineShopping.Web.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.sql.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CardDetails {
+public class CardDetailsRequest {
 
     private String CardHolder;
 

@@ -5,7 +5,7 @@ import com.onlineShopping.Web.entities.Payments;
 import com.onlineShopping.Web.entities.Products;
 import com.onlineShopping.Web.enums.PaymentStatus;
 import com.onlineShopping.Web.enums.Status;
-import com.onlineShopping.Web.pojo.OrderPojo;
+import com.onlineShopping.Web.request.OrderRequest;
 import com.onlineShopping.Web.repository.OrdersRepository;
 import com.onlineShopping.Web.repository.PaymentsRepository;
 import com.onlineShopping.Web.repository.ProductsRepository;
@@ -36,18 +36,18 @@ public class OrdersService {
     }
 
 
-    public Orders saveOrders(OrderPojo orderPojo) {
+    public Orders saveOrders(OrderRequest orderRequest) {
 
         Orders order = new Orders();
 
         order.setStatus(String.valueOf(Status.PENDING));
 
-        order.setUser(usersService.getUserByUserId(orderPojo.getUserId()));
+        order.setUser(usersService.getUserByUserId(orderRequest.getUserId()));
         List<Products> products = new ArrayList<>();
 
 //        productsRepository.findAllById(orderPojo.getProductsIds());
 
-        orderPojo.getProductsIds().forEach(i -> {
+        orderRequest.getProductsIds().forEach(i -> {
             if (productsRepository.findById(i).isPresent()) products.add(productsRepository.findById(i).get());
         });
 
@@ -73,7 +73,7 @@ public class OrdersService {
 
         ordersRepository.save(order);
 
-        usersService.updateOrdersList(orderPojo.getUserId(), order.getId());
+        usersService.updateOrdersList(orderRequest.getUserId(), order.getId());
 
         return ordersRepository.findById(order.getId()).get();
     }

@@ -1,5 +1,6 @@
 package com.onlineShopping.Web.pojo;
 
+import com.onlineShopping.Web.request.CardDetailsRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import java.sql.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PaymentTransaction {
+public class PaymentTransactionRequestAndResponse {
 
     private BigDecimal amount;
 
@@ -27,15 +28,15 @@ public class PaymentTransaction {
 
     private String status;
 
-    public PaymentTransaction(CardDetails cardDetails, BigDecimal amount) {
+    public PaymentTransactionRequestAndResponse(CardDetailsRequest cardDetailsRequest, BigDecimal amount) {
         this.amount = amount;
-        this.CardHolder = cardDetails.getCardHolder();
-        this.cardNumber = cardDetails.getCardNumber();
-        this.date = cardDetails.getDate();
-        this.secureCode = cardDetails.getSecureCode();
+        this.CardHolder = cardDetailsRequest.getCardHolder();
+        this.cardNumber = cardDetailsRequest.getCardNumber();
+        this.date = cardDetailsRequest.getDate();
+        this.secureCode = cardDetailsRequest.getSecureCode();
     }
 
-    public PaymentTransaction(BigDecimal amount, String cardHolder, String cardNumber, java.sql.Date date, long secureCode) {
+    public PaymentTransactionRequestAndResponse(BigDecimal amount, String cardHolder, String cardNumber, java.sql.Date date, long secureCode) {
         this.amount = amount;
         this.CardHolder = cardHolder;
         this.cardNumber = cardNumber;
@@ -43,7 +44,7 @@ public class PaymentTransaction {
         this.secureCode = secureCode;
     }
 
-    private PaymentTransaction(String transactionId, String status) {
+    private PaymentTransactionRequestAndResponse(String transactionId, String status) {
         this.transactionId = transactionId;
         this.status = status;
     }

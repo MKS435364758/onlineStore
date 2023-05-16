@@ -29,6 +29,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET).permitAll()
+                .antMatchers(HttpMethod.POST,SecurityContants.CUSTOMER_SIGN_UP).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

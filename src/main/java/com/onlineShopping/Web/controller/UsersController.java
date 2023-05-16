@@ -1,16 +1,17 @@
 package com.onlineShopping.Web.controller;
 
 import com.onlineShopping.Web.entities.Orders;
-import com.onlineShopping.Web.entities.Users;
 import com.onlineShopping.Web.request.RoleUpdateRequest;
+import com.onlineShopping.Web.request.UserRequest;
 import com.onlineShopping.Web.response.UsersResponse;
 import com.onlineShopping.Web.service.UsersService;
-
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.xml.bind.ValidationException;
 import java.util.List;
 
 @AllArgsConstructor
@@ -52,8 +53,10 @@ public class UsersController {
 
     //todo have to change the incoming user object to userRequest object
     @PostMapping("/sign-up/")
-    ResponseEntity<Object> createNewUser( @RequestBody Users user) {
-        return new ResponseEntity<>(usersService.saveUser(user),
+    ResponseEntity<Object> createNewUser(
+            @Valid
+            @RequestBody UserRequest userRequest) throws ValidationException {
+        return new ResponseEntity<>(usersService.saveUser(userRequest),
                 HttpStatus.CREATED
         );
     }

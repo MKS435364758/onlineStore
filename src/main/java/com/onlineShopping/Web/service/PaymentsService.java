@@ -4,9 +4,9 @@ import com.onlineShopping.Web.entities.Orders;
 import com.onlineShopping.Web.entities.Payments;
 import com.onlineShopping.Web.enums.Status;
 import com.onlineShopping.Web.object.Unwarranted;
-import com.onlineShopping.Web.pojo.CardDetails;
-import com.onlineShopping.Web.pojo.OrderInfo;
-import com.onlineShopping.Web.pojo.PaymentTransaction;
+import com.onlineShopping.Web.request.CardDetailsRequest;
+import com.onlineShopping.Web.kafka.message.request.OrderInfoMessageRequest;
+import com.onlineShopping.Web.pojo.PaymentTransactionRequestAndResponse;
 import com.onlineShopping.Web.repository.OrdersRepository;
 import com.onlineShopping.Web.repository.PaymentsRepository;
 import lombok.AllArgsConstructor;
@@ -27,32 +27,32 @@ public class PaymentsService {
 
     OrdersRepository ordersRepository;
 
-    public Payments getPayment(CardDetails cardDetails, String orderId,
+    public Payments getPayment(CardDetailsRequest cardDetailsRequest, String orderId,
                                BigDecimal amount) {
         RestTemplate restTemplate = new RestTemplate();
         Payments payment = Unwarranted.getObject(ordersRepository.findById(orderId)).getPayment();
 
-        payment.setCardHolder(cardDetails.getCardHolder());
-        payment.setCardNumber(Long.valueOf(cardDetails.getCardNumber()));
-        payment.setDate(cardDetails.getDate().toString());
-        payment.setSecureCode(cardDetails.getSecureCode());
+        payment.setCardHolder(cardDetailsRequest.getCardHolder());
+        payment.setCardNumber(Long.valueOf(cardDetailsRequest.getCardNumber()));
+        payment.setDate(cardDetailsRequest.getDate().toString());
+        payment.setSecureCode(cardDetailsRequest.getSecureCode());
         return payment;
     }
 
-    public Orders savaPayments(CardDetails cardDetails, String orderId) {
+    public Orders savaPayments(CardDetailsRequest cardDetailsRequest, String orderId) {
         RestTemplate restTemplate = new RestTemplate();
 
         //TODO: constructing required pojo for traction and creating http client.
         Orders order = Unwarranted.getObject(ordersRepository.findById(orderId));
         Payments payment = order.getPayment();
 
-        payment.setCardHolder(cardDetails.getCardHolder());
-        payment.setCardNumber(Long.valueOf(cardDetails.getCardNumber()));
-        payment.setDate(cardDetails.getDate().toString());
-        payment.setSecureCode(cardDetails.getSecureCode());
+        payment.setCardHolder(cardDetailsRequest.getCardHolder());
+        payment.setCardNumber(Long.valueOf(cardDetailsRequest.getCardNumber()));
+        payment.setDate(cardDetailsRequest.getDate().toString());
+        payment.setSecureCode(cardDetailsRequest.getSecureCode());
 
-        PaymentTransaction transaction = new PaymentTransaction(cardDetails, order.getFinalAmount());
-        PaymentTransaction responseTransaction = restTemplate.postForObject(URL, transaction, PaymentTransaction.class);
+        PaymentTransactionRequestAndResponse transaction = new PaymentTransactionRequestAndResponse(cardDetailsRequest, order.getFinalAmount());
+        PaymentTransactionRequestAndResponse responseTransaction = restTemplate.postForObject(URL, transaction, PaymentTransactionRequestAndResponse.class);
 
         assert responseTransaction != null;
         payment.setStatus(responseTransaction.getStatus());
@@ -61,7 +61,7 @@ public class PaymentsService {
         paymentRepository.save(payment);
         if (payment.getStatus() != null) {
             order.setStatus(String.valueOf(Status.PAYMENT_APPROVED));
-            kafkaService.sendMessage("order", new OrderInfo(order));
+            kafkaService.sendMessage("order", new OrderInfoMessageRequest(order));
         } else order.setStatus(String.valueOf(Status.PAYMENT_FAILED));
         return Unwarranted.getObject(ordersRepository.findById(orderId));
     }

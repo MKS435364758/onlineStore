@@ -1,10 +1,12 @@
 package com.onlineShopping.Web.service;
 
+import com.onlineShopping.Web.dto.mappers.UserDTOMapper;
 import com.onlineShopping.Web.entities.Orders;
 import com.onlineShopping.Web.entities.Users;
 import com.onlineShopping.Web.repository.OrdersRepository;
 import com.onlineShopping.Web.repository.UsersRepository;
 import com.onlineShopping.Web.request.RoleUpdateRequest;
+import com.onlineShopping.Web.request.UserRequest;
 import com.onlineShopping.Web.response.RoleUpdateResponse;
 import com.onlineShopping.Web.response.UsersResponse;
 import lombok.AllArgsConstructor;
@@ -15,7 +17,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import javax.xml.bind.ValidationException;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +27,10 @@ import java.util.stream.Collectors;
 public class UsersService {
 
     UsersRepository usersRepository;
+
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    UserDTOMapper usersDTOMapper;
 
     OrdersRepository ordersRepository;
 
@@ -50,10 +58,18 @@ public class UsersService {
         }
     }
 
-    public UsersResponse saveUser(Users users) {
+    public UsersResponse saveUser(UserRequest userRequest) throws ValidationException {
+        Users users = usersDTOMapper.apply(userRequest);
+        if(usersRepository.existsByEmail(users.getEmail())) throw new ValidationException("email already exist");
+        if(usersRepository.existsByNumber(users.getNumber())) throw new ValidationException("number already exists");
+        while(usersRepository.existsByUsername(users.getUsername())) {
+            int r = new Random().nextInt();
+            users.setUsername(users.getUsername()+r);
+        }
         if (users.getUsername() == null) users.setUsername(users.getFirstName() + "_" + users.getLastName());
+        users.setUsername(users.getUsername().replace(" ","_"));
         users.setRole("USER");
-        users.setPassword(new BCryptPasswordEncoder().encode(users.getPassword()));
+        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
         usersRepository.save(users);
         return new UsersResponse(users);
     }

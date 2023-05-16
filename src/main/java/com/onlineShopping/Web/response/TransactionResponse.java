@@ -1,4 +1,4 @@
-package com.onlineShopping.Web.pojo;
+package com.onlineShopping.Web.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

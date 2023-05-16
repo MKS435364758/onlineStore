@@ -2,7 +2,7 @@ package com.onlineShopping.Web.controller;
 
 
 import com.onlineShopping.Web.entities.Products;
-import com.onlineShopping.Web.pojo.ProductsPojo;
+import com.onlineShopping.Web.request.ProductRequest;
 import com.onlineShopping.Web.service.ProductsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,8 +28,8 @@ public class ProductsController {
     }
 
     @PostMapping
-    public ResponseEntity<Products> saveProduct(@RequestBody ProductsPojo productsPojo) {
-        return new ResponseEntity<>(productsService.saveProducts(productsPojo),
+    public ResponseEntity<Products> saveProduct(@RequestBody ProductRequest productRequest) {
+        return new ResponseEntity<>(productsService.saveProducts(productRequest),
                 HttpStatus.CREATED
         );
     }

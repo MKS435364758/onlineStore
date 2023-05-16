@@ -1,4 +1,4 @@
-package com.onlineShopping.Web.pojo;
+package com.onlineShopping.Web.kafka.message.request;
 
 import com.onlineShopping.Web.entities.Orders;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @Setter
 @Getter
 
-public class OrderInfo {
+public class OrderInfoMessageRequest {
 
     private String id;
 
@@ -28,7 +28,7 @@ public class OrderInfo {
 
     private Timestamp delivered_on;
 
-    public OrderInfo(Orders orders) {
+    public OrderInfoMessageRequest(Orders orders) {
         this.id = orders.getId();
         this.username = orders.getUser().getUsername();
         this.email = orders.getUser().getEmail();

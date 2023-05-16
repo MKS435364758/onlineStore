@@ -23,10 +23,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security:2.7.2'
 	implementation 'com.h2database:h2'
 	implementation	'org.apache.logging.log4j:log4j:2.20.0'
+	implementation	'org.springframework.boot:spring-boot-starter-validation:2.7.9'
+	implementation	'org.hibernate.validator:hibernate-validator:6.2.5.Final'
 	implementation 'org.apache.kafka:kafka-streams'
 	implementation 'org.apache.kafka:kafka-clients:2.4.1'
 	implementation 'org.springframework.kafka:spring-kafka'
 	implementation "org.postgresql:postgresql"
+	implementation 'org.jetbrains:annotations:23.0.0'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'

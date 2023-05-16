@@ -1,4 +1,4 @@
-package com.onlineShopping.Web.pojo;
+package com.onlineShopping.Web.request;
 
 import com.onlineShopping.Web.entities.Address;
 import com.onlineShopping.Web.entities.Products;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductsPojo {
+public class ProductRequest {
 
     private Products product;
 

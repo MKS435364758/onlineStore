@@ -1,4 +1,4 @@
-package com.onlineShopping.Web.pojo;
+package com.onlineShopping.Web.request;
 
 import com.onlineShopping.Web.entities.Orders;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import java.util.List;
 @Setter
 @Getter
 
-public class OrderPojo extends Orders {
+public class OrderRequest extends Orders {
 
     private String userId;
 
