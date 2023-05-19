@@ -1,4 +1,4 @@
-package com.onlineShopping.Web.response;
+package com.onlineShopping.Web.response.users;
 
 
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class UserSignErrorResponse {
+public class UserSignUpErrorResponse {
 
     private String message;
 

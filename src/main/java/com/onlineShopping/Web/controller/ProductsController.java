@@ -2,7 +2,7 @@ package com.onlineShopping.Web.controller;
 
 
 import com.onlineShopping.Web.entities.Products;
-import com.onlineShopping.Web.request.ProductRequest;
+import com.onlineShopping.Web.request.products.ProductsRequest;
 import com.onlineShopping.Web.service.ProductsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class ProductsController {
     }
 
     @PostMapping
-    public ResponseEntity<Products> saveProduct(@RequestBody ProductRequest productRequest) {
+    public ResponseEntity<Products> saveProduct(@RequestBody ProductsRequest productRequest) {
         return new ResponseEntity<>(productsService.saveProducts(productRequest),
                 HttpStatus.CREATED
         );

@@ -2,7 +2,7 @@ package com.onlineShopping.Web.service;
 
 import com.onlineShopping.Web.entities.Address;
 import com.onlineShopping.Web.entities.Products;
-import com.onlineShopping.Web.request.ProductRequest;
+import com.onlineShopping.Web.request.products.ProductsRequest;
 import com.onlineShopping.Web.repository.AddressRepository;
 import com.onlineShopping.Web.repository.ProductsRepository;
 import com.onlineShopping.Web.repository.UsersRepository;
@@ -24,7 +24,7 @@ public class ProductsService {
 
     UsersService usersService;
 
-    public Products saveProducts(ProductRequest products) {
+    public Products saveProducts(ProductsRequest products) {
         Products product = products.getProduct();
         product.setAddress(new Address());
         productsRepository.save(product);

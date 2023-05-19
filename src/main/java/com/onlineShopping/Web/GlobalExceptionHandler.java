@@ -1,6 +1,9 @@
 package com.onlineShopping.Web;
 
-import com.onlineShopping.Web.response.UserSignErrorResponse;
+import com.onlineShopping.Web.exception.DataNotFound;
+import com.onlineShopping.Web.response.exceptions.NoFoundExceptionResponse;
+import com.onlineShopping.Web.response.exceptions.DataNoFoundResponse;
+import com.onlineShopping.Web.response.users.UserSignUpErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,11 +16,17 @@ import javax.xml.bind.ValidationException;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<UserSignErrorResponse> handleUserValidationException(ValidationException ex){
-        return new ResponseEntity<>( new UserSignErrorResponse(ex.getMessage()),
+    public ResponseEntity<UserSignUpErrorResponse> handleUserValidationException(ValidationException ex){
+        return new ResponseEntity<>( new UserSignUpErrorResponse(ex.getMessage()),
                 HttpStatus.BAD_REQUEST
         );
     }
 
+    @ExceptionHandler(DataNotFound.class)
+    public ResponseEntity<NoFoundExceptionResponse> handlerUserNoFoundException(DataNotFound ex){
+        return new ResponseEntity<>(new DataNoFoundResponse(ex.getMessage()),
+                HttpStatus.NOT_FOUND
+        );
+    }
 
 }

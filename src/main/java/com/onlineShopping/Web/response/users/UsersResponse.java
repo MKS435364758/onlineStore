@@ -1,4 +1,4 @@
-package com.onlineShopping.Web.response;
+package com.onlineShopping.Web.response.users;
 
 
 import com.onlineShopping.Web.entities.Users;

@@ -50,6 +50,14 @@ public class Products {
     @JsonIgnore
     @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
     private List<Orders> orders;
+
+    public Products(@NonNull String images, @NonNull String description, String listedPrice, String discountPercentage, String availability) {
+        this.images = images;
+        this.description = description;
+        this.listedPrice = new BigDecimal(listedPrice);
+        this.discountPercentage = Double.valueOf(discountPercentage);
+        this.availability = Long.valueOf(availability);
+    }
 }
 
 

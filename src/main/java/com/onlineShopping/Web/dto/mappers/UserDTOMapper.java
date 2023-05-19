@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.function.Function;
 
 @Component
-public class UserDTOMapper implements Function<UserRequest, Users> {
+public class UserDTOMapper implements Function<UserRequest, Users>,DTOMapper<UserRequest,Users> {
 
 
     @Override
@@ -17,5 +17,15 @@ public class UserDTOMapper implements Function<UserRequest, Users> {
                 userRequest.getLastName(),
                 userRequest.getEmail(),
                 userRequest.getNumber());
+    }
+
+    @Override
+    public UserRequest toRequestTo(Users entity) {
+        return modelMapper.map(entity,UserRequest.class);
+    }
+
+    @Override
+    public Users toEntity(UserRequest request) {
+        return null;
     }
 }

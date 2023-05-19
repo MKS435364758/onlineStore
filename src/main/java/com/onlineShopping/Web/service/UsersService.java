@@ -3,12 +3,13 @@ package com.onlineShopping.Web.service;
 import com.onlineShopping.Web.dto.mappers.UserDTOMapper;
 import com.onlineShopping.Web.entities.Orders;
 import com.onlineShopping.Web.entities.Users;
+import com.onlineShopping.Web.exception.DataNotFound;
 import com.onlineShopping.Web.repository.OrdersRepository;
 import com.onlineShopping.Web.repository.UsersRepository;
 import com.onlineShopping.Web.request.RoleUpdateRequest;
 import com.onlineShopping.Web.request.UserRequest;
 import com.onlineShopping.Web.response.RoleUpdateResponse;
-import com.onlineShopping.Web.response.UsersResponse;
+import com.onlineShopping.Web.response.users.UsersResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -75,7 +76,11 @@ public class UsersService {
     }
 
     public List<UsersResponse> getAllUsers() {
-        return usersRepository.findAll().stream().map(UsersResponse::new).collect(Collectors.toList());
+        try {
+            return usersRepository.findAll().stream().map(UsersResponse::new).collect(Collectors.toList());
+        }catch (RuntimeException ex){
+            throw new DataNotFound("something when wrong");
+        }
     }
 
 
@@ -88,7 +93,11 @@ public class UsersService {
     }
 
     public Users getUserById(String id){
-        return usersRepository.findById(id).get();
+        try {
+            return usersRepository.findById(id).get();
+        }catch (RuntimeException ex){
+            throw new DataNotFound("user not found with id\t"+id);
+        }
     }
 
     public Users getUserByUserId(String id) {

@@ -29,6 +29,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET).permitAll()
+                .antMatchers(HttpMethod.POST,SecurityContants.SWAGGER_URL).permitAll()
                 .antMatchers(HttpMethod.POST,SecurityContants.CUSTOMER_SIGN_UP).permitAll()
                 .antMatchers(HttpMethod.POST).hasAnyRole("USER","ADMIN","SUPERADMIN")
                 .antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN","SUPERADMIN")
