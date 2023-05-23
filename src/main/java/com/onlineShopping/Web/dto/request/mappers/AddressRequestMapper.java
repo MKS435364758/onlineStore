@@ -1,11 +1,13 @@
-package com.onlineShopping.Web.dto.mappers;
+package com.onlineShopping.Web.dto.request.mappers;
 
 import com.onlineShopping.Web.entities.Address;
 import com.onlineShopping.Web.request.address.AddressRequest;
+import org.springframework.stereotype.Component;
 
-public class AddressDTOMapper implements DTOMapper<AddressRequest, Address>{
+@Component
+public class AddressRequestMapper implements RequestDTOMapper<AddressRequest, Address> {
     @Override
-    public AddressRequest toRequestTo(Address entity) {
+    public AddressRequest toRequest(Address entity) {
         return modelMapper.map(entity, AddressRequest.class);
     }
 

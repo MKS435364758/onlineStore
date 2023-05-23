@@ -1,4 +1,4 @@
-package com.onlineShopping.Web.dto.mappers;
+package com.onlineShopping.Web.dto.request.mappers;
 
 import com.onlineShopping.Web.entities.Users;
 import com.onlineShopping.Web.request.UserRequest;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.function.Function;
 
 @Component
-public class UserDTOMapper implements Function<UserRequest, Users>,DTOMapper<UserRequest,Users> {
+public class UserRequestMapper implements Function<UserRequest, Users>, RequestDTOMapper<UserRequest,Users> {
 
 
     @Override
@@ -20,7 +20,7 @@ public class UserDTOMapper implements Function<UserRequest, Users>,DTOMapper<Use
     }
 
     @Override
-    public UserRequest toRequestTo(Users entity) {
+    public UserRequest toRequest(Users entity) {
         return modelMapper.map(entity,UserRequest.class);
     }
 

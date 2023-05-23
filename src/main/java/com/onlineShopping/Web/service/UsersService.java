@@ -1,6 +1,6 @@
 package com.onlineShopping.Web.service;
 
-import com.onlineShopping.Web.dto.mappers.UserDTOMapper;
+import com.onlineShopping.Web.dto.request.mappers.UserRequestMapper;
 import com.onlineShopping.Web.entities.Orders;
 import com.onlineShopping.Web.entities.Users;
 import com.onlineShopping.Web.exception.DataNotFound;
@@ -10,6 +10,7 @@ import com.onlineShopping.Web.request.RoleUpdateRequest;
 import com.onlineShopping.Web.request.UserRequest;
 import com.onlineShopping.Web.response.RoleUpdateResponse;
 import com.onlineShopping.Web.response.users.UsersResponse;
+import com.onlineShopping.Web.tools.UnPackOptional;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class UsersService {
 
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    UserDTOMapper usersDTOMapper;
+    UserRequestMapper usersDTOMapper;
 
     OrdersRepository ordersRepository;
 
@@ -50,7 +51,7 @@ public class UsersService {
 
     public RoleUpdateResponse updateUserRoleByAdmin(RoleUpdateRequest request){
         try {
-            Users user = usersRepository.findByUsernameAndEmail(request.getUsername(),request.getEmail()).get();
+            Users user = UnPackOptional.getObject(usersRepository.findByUsernameAndEmail(request.getUsername(),request.getEmail()));
             user.setRole("ADMIN");
             usersRepository.save(user);
             return new RoleUpdateResponse("Accepted",user);
@@ -85,7 +86,7 @@ public class UsersService {
 
 
     public UsersResponse getUserByEmail(String email) {
-        return new UsersResponse(usersRepository.findByEmail(email).get());
+        return new UsersResponse(UnPackOptional.getObject(usersRepository.findByEmail(email)));
     }
 
     public UsersResponse getUserResponseById(String id) {
@@ -94,28 +95,28 @@ public class UsersService {
 
     public Users getUserById(String id){
         try {
-            return usersRepository.findById(id).get();
+            return UnPackOptional.getObject(usersRepository.findById(id));
         }catch (RuntimeException ex){
             throw new DataNotFound("user not found with id\t"+id);
         }
     }
 
     public Users getUserByUserId(String id) {
-        return usersRepository.findById(id).get();
+        return UnPackOptional.getObject(usersRepository.findById(id));
     }
 
     public Users getById(String id) {
-        return usersRepository.findById(id).get();
+        return UnPackOptional.getObject(usersRepository.findById(id));
     }
 
     public void updateOrdersList(String userId, String orderId) {
-        List<Orders> orderList = usersRepository.findById(userId).get().getOrderList();
-        orderList.add(ordersRepository.findById(orderId).get());
-        usersRepository.findById(userId).get().setOrderList(orderList);
+        List<Orders> orderList = UnPackOptional.getObject(usersRepository.findById(userId)).getOrderList();
+        orderList.add(UnPackOptional.getObject(ordersRepository.findById(orderId)));
+        UnPackOptional.getObject(usersRepository.findById(userId)).setOrderList(orderList);
     }
 
     public List<Orders> getOrdersMadeByUserId(String id) {
-        return usersRepository.findById(id).get().getOrderList();
+        return UnPackOptional.getObject(usersRepository.findById(id)).getOrderList();
     }
 
     public void deleteUser(String id) {

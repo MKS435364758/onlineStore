@@ -1,4 +1,4 @@
-package com.onlineShopping.Web.object;
+package com.onlineShopping.Web.tools;
 
 import com.onlineShopping.Web.exception.DataNotFound;
 

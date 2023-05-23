@@ -3,7 +3,7 @@ package com.onlineShopping.Web.service;
 import com.onlineShopping.Web.entities.Orders;
 import com.onlineShopping.Web.entities.Payments;
 import com.onlineShopping.Web.enums.Status;
-import com.onlineShopping.Web.object.Unwarranted;
+import com.onlineShopping.Web.tools.UnPackOptional;
 import com.onlineShopping.Web.request.CardDetailsRequest;
 import com.onlineShopping.Web.kafka.message.request.OrderInfoMessageRequest;
 import com.onlineShopping.Web.pojo.PaymentTransactionRequestAndResponse;
@@ -30,7 +30,7 @@ public class PaymentsService {
     public Payments getPayment(CardDetailsRequest cardDetailsRequest, String orderId,
                                BigDecimal amount) {
         RestTemplate restTemplate = new RestTemplate();
-        Payments payment = Unwarranted.getObject(ordersRepository.findById(orderId)).getPayment();
+        Payments payment = UnPackOptional.getObject(ordersRepository.findById(orderId)).getPayment();
 
         payment.setCardHolder(cardDetailsRequest.getCardHolder());
         payment.setCardNumber(Long.valueOf(cardDetailsRequest.getCardNumber()));
@@ -43,7 +43,7 @@ public class PaymentsService {
         RestTemplate restTemplate = new RestTemplate();
 
         //TODO: constructing required pojo for traction and creating http client.
-        Orders order = Unwarranted.getObject(ordersRepository.findById(orderId));
+        Orders order = UnPackOptional.getObject(ordersRepository.findById(orderId));
         Payments payment = order.getPayment();
 
         payment.setCardHolder(cardDetailsRequest.getCardHolder());
@@ -63,7 +63,7 @@ public class PaymentsService {
             order.setStatus(String.valueOf(Status.PAYMENT_APPROVED));
             kafkaService.sendMessage("order", new OrderInfoMessageRequest(order));
         } else order.setStatus(String.valueOf(Status.PAYMENT_FAILED));
-        return Unwarranted.getObject(ordersRepository.findById(orderId));
+        return UnPackOptional.getObject(ordersRepository.findById(orderId));
     }
 
     Payments getPayments(String id) {
