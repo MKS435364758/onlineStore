@@ -6,4 +6,8 @@ public class DataNotFound extends RuntimeException {
         super(message);
     }
 
+    public DataNotFound() {
+        super("No Data Found");
+    }
+
 }

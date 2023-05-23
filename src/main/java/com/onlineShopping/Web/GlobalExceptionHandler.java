@@ -36,7 +36,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(InternalServerException.class)
     public ResponseEntity<InternalServerExceptionResponse> handlerInternalServerException(InternalServerException ex){
         return new ResponseEntity<>(new InternalServerExceptionResponse(ex.getMessage(), Instant.now()),
-                HttpStatus.NOT_FOUND
+                HttpStatus.INTERNAL_SERVER_ERROR
         );
     }
 

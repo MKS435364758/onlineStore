@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +42,7 @@ public class ProductsService {
 
     public ProductsResponse saveProducts(ProductsRequest products) {
 //        Products product = products.getProduct();
+        try {
         Products product = productsRequestMapper.toEntity(products.getProductsPojo());
         //product.setAddress(new Address());
         productsRepository.save(product);
@@ -50,6 +52,11 @@ public class ProductsService {
         product.setAddress(address);
         productsRepository.save(product);
         return productsResponseMapper.toResponse(product);
+        }
+        catch (RuntimeException ex){
+            throw new InternalServerException();
+        }
+
     }
 
     public ProductsResponse getProductsById(String id) {
@@ -69,27 +76,60 @@ public class ProductsService {
         }
     }
 
-    public List<Products> getProductsByPrices(BigDecimal price, int page, int size) {
-        List<Products> products = productsRepository.findAll().stream().filter(i -> {
-            if (i.getListedPrice().compareTo(price) != 1) {
-                return true;
+    public List<ProductsResponse> getProductsByPrices(BigDecimal price, int page, int size) throws InternalServerException,DataNotFound{
+
+        if(productsRepository == null) throw new InternalServerException();
+        try {
+            List<Products> products = productsRepository.findAll().stream()
+                    .filter(i -> i.getListedPrice().compareTo(price) != 1)
+                    .collect(Collectors.toList());
+            int totalProducts = products.size();
+            int startIndex = page * size;
+            int endIndex = Math.min((page * size) + size, totalProducts);
+
+            if (startIndex < totalProducts) {
+
+                return products.subList(startIndex, endIndex)
+                        .stream()
+                        .map(i -> productsResponseMapper.toResponse(i)).sorted((i, j) -> i.getListedPrice().compareTo(j.getListedPrice())).collect(Collectors.toList());
+            } else {
+                return Collections.emptyList(); // Return an empty list if the startIndex is out of bounds
             }
-            return false;
-        }).collect(Collectors.toList());
-        return products.subList(page * size, Math.min((page * size) + size, products.size()));
+
+        }catch (RuntimeException ex){
+            throw new DataNotFound();
+        }
     }
 
     public void deleteProducts(String id) {
-        productsRepository.delete(UnPackOptional.getObject(productsRepository.findById(id)));
+        try {
+            productsRepository.delete(UnPackOptional.getObject(productsRepository.findById(id)));
+        }catch (RuntimeException ex){
+            throw new InternalServerException();
+        }
     }
 
-    public List<Products> getProductsByDiscount(int discount, int page, int size) {
+    public List<ProductsResponse> getProductsByDiscount(int discount, int page, int size) throws InternalServerException,DataNotFound {
+
+        if(productsRepository == null ) throw new InternalServerException();
+
         double d = discount / (double) 100;
-        return productsRepository.findAll().stream().filter(i -> {
-            if (i.getDiscountPercentage().compareTo(d) != 1) {
-                return true;
-            }
-            return false;
-        }).collect(Collectors.toList()).subList(page * size, Math.min((page * size) + size, productsRepository.findAll().size()));
+
+        List<Products> products = productsRepository.findAll();
+        int totalProducts = products.size();
+        int startIndex = page * size;
+        int endIndex = Math.min((page * size) + size, totalProducts);
+
+        if (startIndex < totalProducts) return products.stream().filter(i -> {
+                    if (i.getDiscountPercentage().compareTo(d) != 1) {
+                        return true;
+                    }
+                    return false;
+                }).collect(Collectors.toList()).subList(page * size, Math.min((page * size) + size, productsRepository.findAll().size()))
+                .stream()
+                .map(i -> productsResponseMapper.toResponse(i)).sorted((i, j) -> j.getDiscountPercentage().compareTo(i.getDiscountPercentage()))
+                .collect(Collectors.toList());
+        else return Collections.emptyList();
+
     }
 }

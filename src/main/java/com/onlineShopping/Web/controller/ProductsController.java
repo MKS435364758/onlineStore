@@ -1,11 +1,9 @@
 package com.onlineShopping.Web.controller;
 
 
-import com.onlineShopping.Web.entities.Products;
 import com.onlineShopping.Web.request.products.ProductsRequest;
 import com.onlineShopping.Web.response.exceptions.DataNoFoundResponse;
 import com.onlineShopping.Web.response.product.ProductsResponse;
-import com.onlineShopping.Web.response.users.UsersResponse;
 import com.onlineShopping.Web.service.ProductsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -31,7 +29,7 @@ public class ProductsController {
     @GetMapping("/id/")
     @Operation(summary = "get product info by id",description = "Retrieving product info by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",description = "Successful",content = @Content(mediaType = "application/json",schema = @Schema(implementation = UsersResponse.class))),
+            @ApiResponse(responseCode = "200",description = "Successful",content = @Content(mediaType = "application/json",schema = @Schema(implementation = ProductsResponse.class))),
             @ApiResponse(responseCode = "400",description = "No Found",content = @Content(mediaType = "application/json",schema = @Schema(implementation = DataNoFoundResponse.class))) })
     public ResponseEntity<ProductsResponse> getProductsById(@RequestBody String id) {
         return new ResponseEntity<>(productsService.getProductsById(id),
@@ -40,6 +38,10 @@ public class ProductsController {
     }
 
     @PostMapping
+    @Operation(summary = "creating an new product",description = "Creating an new product")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Successful",content = @Content(mediaType = "application/json",schema = @Schema(implementation = ProductsResponse.class))),
+            @ApiResponse(responseCode = "400",description = "No Found",content = @Content(mediaType = "application/json",schema = @Schema(implementation = DataNoFoundResponse.class))) })
     public ResponseEntity<ProductsResponse> saveProduct(@RequestBody ProductsRequest productRequest) {
         return new ResponseEntity<>(productsService.saveProducts(productRequest),
                 HttpStatus.CREATED
@@ -53,16 +55,16 @@ public class ProductsController {
         );
     }
 
-    @GetMapping(params = {"price", "page", "size"})
-    public ResponseEntity<List<Products>> getProductsByprices(@RequestParam("price") BigDecimal price, @RequestParam("page") int page,
+    @GetMapping(value = "/filter/price",params = {"price", "page", "size"})
+    public ResponseEntity<List<ProductsResponse>> getProductsByPrices(@RequestParam("price") BigDecimal price, @RequestParam("page") int page,
                                                               @RequestParam("size") int size) {
         return new ResponseEntity<>(productsService.getProductsByPrices(price, page, size),
                 HttpStatus.OK
         );
     }
 
-    @GetMapping(params = {"discount", "page", "size"})
-    public ResponseEntity<List<Products>> getProductsByDiscount(@RequestParam("discount") int discount, @RequestParam("page") int page,
+    @GetMapping(value = "/filter/discount",params = {"discount", "page", "size"})
+    public ResponseEntity<List<ProductsResponse>> getProductsByDiscount(@RequestParam("discount") int discount, @RequestParam("page") int page,
                                                                 @RequestParam("size") int size) {
         return new ResponseEntity<>(productsService.getProductsByDiscount(discount, page, size),
                 HttpStatus.OK
